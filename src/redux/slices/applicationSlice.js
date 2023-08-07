@@ -10,7 +10,7 @@ const slice = createSlice({
     display: [],
     listDevices: {},
     issues: [],
-    applicationSettings: { loaded: false },
+    applicationSettings: { loaded: false, currency: 'MDL' },
     versionsAvailable: []
   },
   reducers: {

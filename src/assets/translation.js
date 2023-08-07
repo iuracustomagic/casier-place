@@ -131,6 +131,7 @@ const translate = {
     "Can't apply discount": "Nu se poate aplica reducerea",
     "There is already discount!": "Există deja reducere!",
     "Success enter": "Te-ai înregistrat cu succes",
+    "Registration": "Inregistreaza-te",
   },
   ru: {
     "Scan your code": "Сканируйте свой код",
@@ -260,6 +261,7 @@ const translate = {
     "Can't apply discount": "Не могу применить скидку",
     "There is already discount!": "Скидка уже есть!",
     "Success enter": "Вы успешно зарегестрировались",
+    "Registration": "Зарегистрироваться",
   },
   en: {
     ItemMulti: "s"

@@ -20,6 +20,7 @@ import Critical from "components/Dialog/Critical";
 import Alert from "components/Dialog/Alert";
 import Cash from "components/Dialog/Cash";
 import Check from "components/Dialog/Check";
+import EnterRegistration from "../Dialog/EnterRegistration";
 
 function Dialog() {
   const [modal, settings] = useSelector((state) => state.modal.dialog);
@@ -68,6 +69,7 @@ function Dialog() {
           {modal === "Alert" && <Alert />}
           {modal === "Cash" && <Cash settings={settings} />}
           {modal === "Check" && <Check />}
+          {modal === "EnterRegistration" && <EnterRegistration />}
         </div>
       </div>
     </div>

@@ -45,6 +45,7 @@ const slice = createSlice({
 
       if (index > -1) {
         const copy = [...state.cart];
+
         copy.splice(index, 1, {
           ...copy[index],
           qty: copy[index].qty + 1,
@@ -56,6 +57,7 @@ const slice = createSlice({
             state.discount
           )
         });
+
         state.cart = copy;
         countPromotionHelper(state, index);
         state.sum = state.cart.reduce(
@@ -73,6 +75,7 @@ const slice = createSlice({
         ...payload.product,
         qty: payload.weight || 1,
         fullPrice: price,
+        // countedPrice:  price,
         ...ifBelongsPromotion(state, payload.product._id),
         countedPrice: countSumIfArray(
           payload.product.discount,
@@ -95,6 +98,8 @@ const slice = createSlice({
         0
       );
     },
+
+
     countPromotion(state, { payload }) {
       countPromotionHelper(state, payload);
 

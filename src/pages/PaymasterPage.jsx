@@ -12,6 +12,7 @@ import { settings } from "controllers/index";
 import Error from "components/Status/Error";
 import Version from "common/Version";
 import Header from "../components/Header/Header";
+import {Content} from "../components/Content/Content";
 
 export default function PaymasterPage() {
     const [headerState, setHeaderState] = useState(false);
@@ -36,7 +37,7 @@ export default function PaymasterPage() {
                 <>
                     <Version />
                     <Header collapseHeader={collapseHeader} mode={headerState} />
-                    {/*<Content />*/}
+                    <Content />
                 </>
             )}
         </div>

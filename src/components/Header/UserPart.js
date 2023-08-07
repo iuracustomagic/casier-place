@@ -26,7 +26,15 @@ function UserPart() {
       {admin && (
         <>
           <button
-            onClick={() => dispatch(setDialog(["UserModal", userData]))}
+              onClick={() => dispatch(setDialog(["EnterRegistration", userData]))}
+              type="button"
+              className="btn btn-grey"
+          >
+
+            <span>{translation[lang]['Registration']}</span>
+          </button>
+          <button
+            onClick={() => dispatch(setDialog(["EnterRegistration", userData]))}
             type="button"
             className="btn btn-grey"
           >

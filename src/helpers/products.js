@@ -7,7 +7,7 @@ export const countGuarantee = (price, qty, guarantee) =>
 
 export const countSumCard = (discountCard, price) => {
   // 3d parametr qty
-  if (discountCard.regular) {
+  if (discountCard?.regular) {
     return price - (price * discountCard.regular.percent) / 100;
   }
 
@@ -15,7 +15,7 @@ export const countSumCard = (discountCard, price) => {
 };
 
 export const countSum = (discount, price, qty, countedDiscount = 0) => {
-  if (discount.regular) {
+  if (discount?.regular) {
     const counted = +(price - (price * discount.regular.percent) / 100).toFixed(
       2
     );
@@ -27,7 +27,7 @@ export const countSum = (discount, price, qty, countedDiscount = 0) => {
     return counted;
   }
 
-  if (discount.guarantee) {
+  if (discount?.guarantee) {
     if (discount.guarantee.items) {
       return price;
     }
@@ -37,7 +37,7 @@ export const countSum = (discount, price, qty, countedDiscount = 0) => {
     return countGuarantee(price, qty, count);
   }
 
-  if (discount.date) {
+  if (discount?.date) {
     const counted = +(price - (price * discount.date.percent) / 100).toFixed(2);
 
     if (countedDiscount < counted) {
@@ -53,7 +53,7 @@ export const countSum = (discount, price, qty, countedDiscount = 0) => {
 };
 
 export const countSumIfArray = (discount, price, qty, discountCard) => {
-  const haveGuarantee = discount.some((cur) => cur.guarantee);
+  // const haveGuarantee = discount.some((cur) => cur.guarantee);
   const countedDiscount = +countSumCard(discountCard || {}, price, qty).toFixed(
     2
   );
@@ -62,7 +62,7 @@ export const countSumIfArray = (discount, price, qty, discountCard) => {
     return discount.reduce(
       (prev, cur) =>
         Math.min(countSum(cur, price, qty, countedDiscount, prev), prev),
-      haveGuarantee ? price : countedDiscount
+       price
     );
   }
 
@@ -72,7 +72,7 @@ export const countSumIfArray = (discount, price, qty, discountCard) => {
 export const countPromotion = (state, index = false) => {
   if (
     index !== false &&
-    !state.cart[index].discount.some((cur) => cur.guarantee)
+    !state.cart[index].discount?.some((cur) => cur.guarantee)
   ) {
     if (!state.cart[index].guarantee) {
       return;
@@ -121,7 +121,7 @@ export const countPromotion = (state, index = false) => {
 
 export const ifBelongsPromotion = (state, _id) => ({
   ...(state.promotion.find((cur) =>
-    cur.guarantee.items.some((items) => items === _id)
+    cur.guarantee.items?.some((items) => items === _id)
   ) ?? {}),
   _id
 });
@@ -136,7 +136,7 @@ export const pushPromotion = (state, promotion, ref) => {
   });
 
   state.cart = state.cart.map((cur) =>
-    promotion.guarantee.items.some((prom) => prom === cur._id)
+    promotion.guarantee.items?.some((prom) => prom === cur._id)
       ? { ...cur, guarantee: { ...promotion.guarantee, used: 0, ref } }
       : cur
   );
